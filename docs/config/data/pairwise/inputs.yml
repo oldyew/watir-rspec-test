@@ -1,0 +1,18 @@
+Day type: [weekday, saturday, sunday]
+Holiday: [ordinary, holiday]
+Time: [ordinary, time_half, double]
+Shift_type: [day, afternoon, noon, early morning]
+Break: [yes, no]
+Downtime: [yes, no]
+Other Charges: [yes, no]
+Container Number: [5, 12]
+Load Type: [load, unload]
+Work Type: [fun stacks, chocolate]
+Cartons: [10, 2501]
+employee: [casual, salaried]
+
+
+
+#Cancellation: [yes, no]
+#Level: [site, crew]
+#Crew Type: [ordinary, split]
