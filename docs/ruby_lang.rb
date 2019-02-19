@@ -68,6 +68,7 @@ string.upcase
 string.downcase
 string.swapcase
 string.reverse
+string.concat
 string.sub 'test', 'test1'
 string.gsub
 string.strip
@@ -75,7 +76,23 @@ string.split
 string.split(//) by characters
 string.join
 str.split.reverse.join(' ')
+string.lstrip
+string.rstrip
+string.strip
+string.chop
+string.chomp
+string.insert
+string.count
+string.index('word')
+string.casecmp
 
+
+array.at(1)
+array.first
+array.last
+array.take(n)
+array.drop(n)
+array.sort
 array.delete(value)
 array.delete_at(position) # delete and return it
 array.delete_if { |i| i > 1 }
@@ -83,6 +100,7 @@ array.include?(value)
 array.length
 array.find_index(value)
 array.push(value) == array << value #add to the end of array
+array.insert(3,'val')
 array.pop # remove last element and return it
 array.shift - take, return and remove first element
 массив в строки
@@ -103,6 +121,9 @@ hash.merge(new_hash)
 Array(hash) or hash.to_a
 hash.keys
 hash.values
+hash.length|size
+hash.key?(k)
+hash.value?(v)
 
 
 def method_name (&block_name)
@@ -124,6 +145,13 @@ end is equal to {}
 
 File.open('PATH', 'w+')
 r, a, w, w+, a+, r+
+
+file = File.open('PATH', 'r')
+while !file.eof?
+  puts file.readline
+end
+
+file.puts 'text'
 
 file = File.open('file.txt')
 lines = file.readlines - возвращает строки файла в виде массива
@@ -476,3 +504,19 @@ end
 p string =~ /Z/i ? 'Valid' : 'Invalid' # case insensative
 p string.to_enum(:scan, /\d+/).map {Regexp.last_match}
 VALID_EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+
+
+# MS Excel
+require 'spreadsheet'
+
+workbook = SpreadSheet::Wrokbook.new
+sheet = workbook.create_sheet
+sheet.name = 'Sheet 1'
+sheet[0,1] = 'Text'
+workbook.write('PATH')
+
+# YAML
+require 'yaml'
+
+config = YAML.load_file('PATH')
+config[0][key]
