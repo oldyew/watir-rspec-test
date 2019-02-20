@@ -41,5 +41,5 @@ div > div:nth-of-type(2) or div > div:nth-child(2)
 
 [attribute=“value”]
 
-[id=“value”] or #
-
+input#pass[type='password']
+input.inputtext[type='email']
