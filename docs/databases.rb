@@ -56,3 +56,7 @@ puts "Printing all tasks:"
 pp Task.all
 
 ActiveRecord::Base.connection.close
+
+
+# Trick to install sqlite3 gem
+# ridk exec pacman -S mingw-w64-x86_64-dlfcn
