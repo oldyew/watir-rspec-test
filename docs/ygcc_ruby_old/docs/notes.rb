@@ -1,0 +1,1 @@
+rspec regression_test_plan_spec.rb --format html --out rspec_results.html
