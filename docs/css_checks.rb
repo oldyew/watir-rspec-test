@@ -1,16 +1,16 @@
-if not browser.div(:text,"email").style('width') == "75px" 
+if not browser.div(:text,"email").style('width') == "75px"
     fail "Width is not 75px"
   end
-   
-  if not browser.div(:text,"email").style('text-align') == "right" 
+
+  if not browser.div(:text,"email").style('text-align') == "right"
     fail "Text align is not right"
   end
-   
-  if not browser.div(:text,"email").style('font-size') == "11px" 
+
+  if not browser.div(:text,"email").style('font-size') == "11px"
    fail "Text align is not 11px"
   end
 
-  
+
 browser.div(:text,"SampleElement").style('background')
 
 browser.div(:text,"SampleElement").style('font-size')
@@ -27,7 +27,7 @@ button[type=‘submit’].button_submit
 tag - attribute - class
 
 form > div > div > div > button.button_submit
-form button.button_submit 
+form button.button_submit
 
 div + span[data-id=‘link’] + button
 
@@ -40,6 +40,8 @@ div[class*=‘cell’]
 div > div:nth-of-type(2) or div > div:nth-child(2)
 
 [attribute=“value”]
+
+[id=“value”] or #value
 
 input#pass[type='password']
 input.inputtext[type='email']

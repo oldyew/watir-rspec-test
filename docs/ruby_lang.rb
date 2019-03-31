@@ -3,9 +3,10 @@ print # without \n
 .inspect # transform object to string
 p method == puts method.inspect
 #{...} - interpolation
-#  \t - TAB, \n - ENTER, \\, \", \' 
+#  \t - TAB, \n - ENTER, \\, \", \'
 '...' without changes
-.chomp - remove \n
+String.chomp - remove \n
+String.chop - remove \n and trailing character
 return - возвращает значение экземпляра и выходит
 
 if/unless - true/false
@@ -16,7 +17,7 @@ while/until - true/false
 end
 
 or
-(1...10).to_a.select {|x| x.even?} 
+(1...10).to_a.select {|x| x.even?}
 or
 (1...10).to_a.select (&:even?)
 
@@ -63,7 +64,7 @@ method arguments
  - traditional splat - def method *args
  - keyword-based splat - def method **args
  - optional - def method options = {}
-  
+
 string.upcase
 string.downcase
 string.swapcase
@@ -85,7 +86,7 @@ string.insert
 string.count
 string.index('word')
 string.casecmp
-
+String.each_char
 
 array.at(1)
 array.first
@@ -110,6 +111,7 @@ arr = %w(The quick brown fox jumped over the lazy dog)
 строки в массив
 array.chars
 array.split(value)
+Array.uniq - remove duplicate values
 
 hash[:key]
 hash.delete(:key) #delete and return it
@@ -157,7 +159,7 @@ file = File.open('file.txt')
 lines = file.readlines - возвращает строки файла в виде массива
 file.close
 
-is equal to 
+is equal to
 
 lines = []
 File.open("file.txt") do |file|
@@ -166,15 +168,15 @@ end
 puts lines.length
 если файл открывается в блоке то по завершении блока файл будет закрыт автоматически
 
-relevant_lines = [] 
-lines.each do |line| 
-  if line.include?("Truncated") 
+relevant_lines = []
+lines.each do |line|
+  if line.include?("Truncated")
     relevant_lines << line
    end
  end
  puts relevant_lines
 
-is equal to 
+is equal to
 
 relevant_lines = lines.find_all { |line| line.include?("Truncated") }
 puts relevant_lines
@@ -194,7 +196,7 @@ reviews.each do |review|
   adjectives << find_adjective(review)
 end
 
-# is equal to 
+# is equal to
 adjectives = reviews.map { |review| find_adjective(review)}
 
 puts adjectives
@@ -236,28 +238,38 @@ puts adjectives
 [1, 2, 3, 4].all? { |number| number.odd? } - все нечетные?
 [1, 2, 3, 4].any? { |number| number.odd? } - какой-нить нечетный?
 [1, 2, 3, 4].none? { |number| number > 4 } - ни один не больше 4
-[1, 2, 3, 4].count { |number| number.odd? } 
+[1, 2, 3, 4].count { |number| number.odd? }
 [1, 2, 3, 4].partition { |number| number.odd? } - массив из 2х массивов - нечетные и четные
 ['$', '$$', '$$$'].map { |string| string.length }
 ['$', '$$', '$$$'].max_by { |string| string.length } - наибольший
 ['$', '$$', '$$$'].min_by { |string| string.length } - наименьший
 
+# Enumerable
+.map syn .collect
+.find syn .detect
+.select syn .find_all
+.select opp .reject
+.inject syn .reduce
+.each
+.include? syn .member?
+
+
 
 lines = []
 File.open("votes.txt") do |file|
   lines = file.readlines
-end 
+end
 
 votes = Hash.new(0)
 
-lines.each do |line| 
+lines.each do |line|
   name = line.chomp
-  name.upcase! 
-  votes[name] += 1 
-end 
+  name.upcase!
+  votes[name] += 1
+end
 
-votes.each do |name, count| 
-  puts "#{name}: #{count}" 
+votes.each do |name, count|
+  puts "#{name}: #{count}"
 end
 
 class MyClass
@@ -272,7 +284,7 @@ class MyClass
   end
 end
 
-# If you need the ability to call the data elements outside of the class, 
+# If you need the ability to call the data elements outside of the class,
 # then you would still need to have the attr_accessor call in place.
 
 class Candidate
@@ -366,30 +378,30 @@ class Steak
   end
 end
 
-prime = Steak.new 
-prime.grade = "Prime" 
-choice = Steak.new 
-choice.grade = "Choice" 
-select = Steak.new 
-select.grade = "Select" 
+prime = Steak.new
+prime.grade = "Prime"
+choice = Steak.new
+choice.grade = "Choice"
+select = Steak.new
+select.grade = "Select"
 
-puts "prime > choice: #{prime > choice}" 
-puts "prime < select: #{prime < select}" 
-puts "select == select: #{select == select}" 
-puts "select <= select: #{select <= select}" 
-puts "select >= choice: #{select >= choice}" 
-print "choice.between?(select, prime): " 
+puts "prime > choice: #{prime > choice}"
+puts "prime < select: #{prime < select}"
+puts "select == select: #{select == select}"
+puts "select <= select: #{select <= select}"
+puts "select >= choice: #{select >= choice}"
+print "choice.between?(select, prime): "
 puts choice.between?(select, prime)
 
 
 class Apple
   include Comparable
   attr_accessor :weight
-  
+
   def initialize(weight)
     self.weight = weight
   end
-  
+
   def <=>(other)
     self.weight <=> other.weight
   end
@@ -407,20 +419,20 @@ module Comparable
 module Enumerable
 
 class WordSplitter
-  include Enumerable 
+  include Enumerable
   attr_accessor :string
   def each
     string.split(" ").each do |word|
-      yield word 
-    end 
-  end 
+      yield word
+    end
+  end
 end
 
-splitter = WordSplitter.new 
+splitter = WordSplitter.new
 splitter.string = "how do you do"
 
-p splitter.find_all { |word| word.include?("d") } 
-p splitter.reject { |word| word.include?("d") } 
+p splitter.find_all { |word| word.include?("d") }
+p splitter.reject { |word| word.include?("d") }
 p splitter.map { |word| word.reverse }
 
 
@@ -429,42 +441,42 @@ end
 class OvenEmptyError < StandardError
 end
 
-class SmallOven 
-  attr_accessor :contents 
-  def turn_on 
-    puts "Turning oven on." 
-    @state = "on" 
-  end 
-  def turn_off 
-    puts "Turning oven off." 
-    @state = "off" 
-  end 
-  def bake 
-    unless @state == "on" 
-      raise OvenOffError, "You need to turn the oven on first!" 
-    end 
-    if @contents == nil 
-      raise OvenEmptyError, "There's nothing in the oven!" 
-    end 
-    "golden-brown #{contents}" 
-  end 
+class SmallOven
+  attr_accessor :contents
+  def turn_on
+    puts "Turning oven on."
+    @state = "on"
+  end
+  def turn_off
+    puts "Turning oven off."
+    @state = "off"
+  end
+  def bake
+    unless @state == "on"
+      raise OvenOffError, "You need to turn the oven on first!"
+    end
+    if @contents == nil
+      raise OvenEmptyError, "There's nothing in the oven!"
+    end
+    "golden-brown #{contents}"
+  end
 end
 
-dinner = ['turkey', 'casserole', 'pie'] 
-oven = SmallOven.new 
-oven.turn_off 
-dinner.each do |item| 
-  begin 
-    oven.contents = item 
+dinner = ['turkey', 'casserole', 'pie']
+oven = SmallOven.new
+oven.turn_off
+dinner.each do |item|
+  begin
+    oven.contents = item
     puts "Serving #{oven.bake}."
   rescue OvenEmptyError => error
     puts "Error: #{error.message}"
   rescue OvenOffError => error
     oven.turn_on
     retry
-  ensure 
-    oven.turn_off 
-  end 
+  ensure
+    oven.turn_off
+  end
 end
 
 begin
@@ -489,7 +501,7 @@ full_name = Proc.new{ |first, last| first + " " + last}
 
 full_name = lamda { |first, last| first + " " + last}
 p full_name["jordan", "hudgens"]
-or 
+or
 full_name = -> (first, last) {first + " " + last}
 p full_name.call("jordan", "hudgens")
 

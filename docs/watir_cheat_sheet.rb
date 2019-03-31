@@ -262,3 +262,16 @@ browser.button(:value => "submit").wait_while_present
 # [implicit wait] 5 seconds
 # good to have, but i don't recommend its global use
 browser.driver.manage.timeouts.implicit_wait = 5
+
+
+browser.links
+browser.images
+browser.h2s
+
+browser.links.map(&:href)
+
+browser.screenshot.save("/tmp/screen.png")
+
+browser.execute_script "alert('bacon')"
+
+browser.execute_script "return 1 + 1"

@@ -1,4 +1,16 @@
 rspec regression_test_plan_spec.rb --format html --out rspec_results.html
+rspec google_spec.rb
+rspec first_spec.rb second_spec.rb
+rspec google_spec.rb:30
+rspec -fh google_spec.rb > test_report.html
+
+# before :suite
+# before :context
+# before :example
+# after  :example
+# after  :context
+# after  :suite
+# https://relishapp.com/rspec/rspec-core/v/3-8/docs/hooks/before-and-after-hooks
 
 Here’s a list:
 
