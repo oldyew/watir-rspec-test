@@ -139,6 +139,14 @@ CREATE TABLE IF NOT EXISTS albums(
   artist_id INTEGER,
   FOREIGN KEY(artist_id) REFERENCES artist(id)
 );
+DROP TABLE IF EXISTS albums;
+CREATE TABLE IF NOT EXISTS albums(
+  id INTEGER PRIMARY KEY,
+  name TEXT,
+  year INTEGER,
+  artist_id INTEGER,
+  FOREIGN KEY(artist_id) REFERENCES artist(id) ON DELETE CASCADE
+);
 
 ## JOINS are used in SQL to combine data from multiple tables
 
@@ -157,15 +165,6 @@ SELECT * FROM albums LEFT JOIN artists ON albums.artist_id = artists.id;
 ### AS is a keyword in SQL that allows you to rename a column or table in the result set using an alias
 
 SELECT albums.name AS 'Album', albums.year, artists.name AS 'Artist' FROM albums JOIN artists ON albums.artist_id = artists.id WHERE albums.year > 1980;
-
-## Subqueries
-
-- Subqueries are used to complete an SQL transformation by nesting one query within another query.
-- A non-correlated subquery is a subquery that can be run independently of the outer query and can be used to complete a multi-step transformation.
-- A correlated subquery is a subquery that cannot be run independently of the outer query. The order of operations in a correlated subquery is as follows:
-
-1. A row is processed in the outer query.
-2. Then, for that particular row in the outer query, the subquery is executed.
 
 ### UNION
 
@@ -187,3 +186,37 @@ when 'tina' then score*3
 else score
 end
 'NewScore',name from Marks;
+
+## DB VALIDATION
+
+### NOT NULL
+
+### UNIQUE
+
+### DEFAULT
+
+### CHECK
+
+## VIEWS
+
+create view google_info as
+select * from company where name='google';
+select * from google_info;
+
+create view Avg_company as
+select name,employees from company group by name having employees > (select avg(employees) from company);
+select * from Avg_company;
+
+## STRING FUNCTIONS
+
+### CONCAT
+
+### SUBSTR
+
+### REPLACE
+
+### LENGTH
+
+### TRIM
+
+### TOP/LIMIT
